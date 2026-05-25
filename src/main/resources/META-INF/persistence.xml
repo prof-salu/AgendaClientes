@@ -1,90 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <persistence
+        xmlns="https://jakarta.ee/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            https://jakarta.ee/xml/ns/persistence
+            https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+        version="3.1">
 
-xmlns="https://jakarta.ee/xml/ns/persistence"
+    <persistence-unit name="AgendaClientes" transaction-type="RESOURCE_LOCAL">
 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-xsi:schemaLocation="
+        <class>com.agenda.modelo.Cliente</class>
+        <class>com.agenda.modelo.Telefone</class>
 
-https://jakarta.ee/xml/ns/persistence
+        <properties>
 
-https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="org.sqlite.JDBC"/>
 
-version="3.1">
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlite:agenda.db"/>
 
+            <property name="jakarta.persistence.jdbc.user"
+                      value=""/>
 
+            <property name="jakarta.persistence.jdbc.password"
+                      value=""/>
 
-<persistence-unit name="AgendaClientes" transaction-type="RESOURCE_LOCAL">
+            <property name="hibernate.dialect"
+                      value="org.hibernate.community.dialect.SQLiteDialect"/>
 
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update"/>
 
+            <property name="hibernate.show_sql"
+                      value="false"/>
 
-<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+            <property name="hibernate.format_sql"
+                      value="false"/>
 
-
-
-<class>com.agenda.modelo.Contato</class>
-
-<class>com.agenda.modelo.Endereco</class>
-
-
-
-<properties>
-
-
-
-<property name="jakarta.persistence.jdbc.driver"
-
-value="org.sqlite.JDBC"/>
-
-
-
-<property name="jakarta.persistence.jdbc.url"
-
-value="jdbc:sqlite:agenda.db"/>
-
-
-
-<property name="jakarta.persistence.jdbc.user"
-
-value=""/>
-
-
-
-<property name="jakarta.persistence.jdbc.password"
-
-value=""/>
-
-
-
-<property name="hibernate.dialect"
-
-value="org.hibernate.community.dialect.SQLiteDialect"/>
-
-
-
-<property name="hibernate.hbm2ddl.auto"
-
-value="update"/>
-
-
-
-<property name="hibernate.show_sql"
-
-value="false"/>
-
-
-
-<property name="hibernate.format_sql"
-
-value="false"/>
-
-
-
-</properties>
-
-</persistence-unit>
-
-</persistence> 
-
+        </properties>
+    </persistence-unit>
+</persistence>
