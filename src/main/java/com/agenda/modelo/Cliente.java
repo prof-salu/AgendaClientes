@@ -1,18 +1,26 @@
-package com.agenda;
+package com.agenda.modelo;
+
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // TODO 1: Transformar esta classe em uma Entidade JPA (@Entity)
+@Entity
 public class Cliente {
 
     // TODO 2: Configurar a Chave Primária (@Id e @GeneratedValue)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String nome;
+    @Column(unique = true)
     private String email;
 
     // TODO 3: Configurar o relacionamento 1xN (@OneToMany)
     // Dica: Use mappedBy="cliente", cascade=CascadeType.ALL
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Telefone> telefones = new ArrayList<>();
 
     public Cliente() {
@@ -42,6 +50,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [" + id + "] " + nome + " (" + email + ")";
+        return "Cliente [" + id + "] " + nome + " (" + email + ") { " +
+                telefones + " }";
     }
 }
