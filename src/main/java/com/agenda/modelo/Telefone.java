@@ -2,21 +2,19 @@ package com.agenda.modelo;
 
 import jakarta.persistence.*;
 
-// TODO 4: Transformar em Entidade JPA (@Entity)
-@Entity
+@Entity // 1. Tabela de Telefones
 public class Telefone {
 
-    // TODO 5: Configurar Chave Primária (@Id e @GeneratedValue)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String ddd;
     private String numero;
 
-    // TODO 6: Configurar o lado N do relacionamento (@ManyToOne)
-    // Dica: Adicione @JoinColumn(name="cliente_id")
+    // 2. Mapeamento Nx1: Muitos telefones pertencem a UM cliente.
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id") // 3. Cria a coluna de chave estrangeira no banco
     private Cliente cliente;
 
     public Telefone() {
