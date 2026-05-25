@@ -1,22 +1,27 @@
-package com.agenda;
+package com.agenda.modelo;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO 1: Transformar esta classe em uma Entidade JPA (@Entity)
+@Entity // 1. Indica que esta classe será uma tabela no banco de dados
 public class Cliente {
 
-    // TODO 2: Configurar a Chave Primária (@Id e @GeneratedValue)
+    @Id // 2. Indica que este é o campo Chave Primária (Primary Key)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 3. Autoincremento (1, 2, 3...)
     private Long id;
+
     private String nome;
     private String email;
 
-    // TODO 3: Configurar o relacionamento 1xN (@OneToMany)
-    // Dica: Use mappedBy="cliente", cascade=CascadeType.ALL
+    // 4. Mapeamento 1xN: Um cliente tem muitos telefones.
+    // 'mappedBy' aponta para o nome do atributo lá na classe Telefone.
+    // 'cascade' garante que, ao salvar o Cliente, os Telefones sejam salvos juntos.
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Telefone> telefones = new ArrayList<>();
 
     public Cliente() {
-        // Construtor vazio obrigatório para o JPA
+        // Construtor vazio exigido pelo JPA
     }
 
     public Cliente(String nome, String email) {
@@ -24,9 +29,8 @@ public class Cliente {
         this.email = email;
     }
 
-    // Método utilitário para manter a consistência bidirecional
     public void adicionarTelefone(Telefone telefone) {
-        telefone.setCliente(this);
+        telefone.setCliente(this); // Mantém a relação bidirecional
         this.telefones.add(telefone);
     }
 
