@@ -1,10 +1,10 @@
-﻿package com.agenda;
+package com.agenda;
 
 import com.agenda.modelo.Cliente;
 import com.agenda.modelo.ClienteDAO;
 import com.agenda.modelo.Telefone;
 
-public class Editar {
+public class TesteEditar {
     public static void main(String[] args) {
         ClienteDAO dao = new ClienteDAO();
 

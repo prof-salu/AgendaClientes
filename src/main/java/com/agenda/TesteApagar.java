@@ -1,8 +1,8 @@
-﻿package com.agenda;
+package com.agenda;
 
 import com.agenda.modelo.ClienteDAO;
 
-public class Apagar {
+public class TesteApagar {
 
     public static void main(String[] args) {
         ClienteDAO dao = new ClienteDAO();

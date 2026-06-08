@@ -1,11 +1,11 @@
-﻿package com.agenda;
+package com.agenda;
 
 import com.agenda.modelo.Cliente;
 import com.agenda.modelo.ClienteDAO;
 
 import java.util.List;
 
-public class MainSelect {
+public class TesteConsultar {
     public static void main(String[] args) {
         ClienteDAO dao = new ClienteDAO();
         List<Cliente> lista = dao.listarTodos();
